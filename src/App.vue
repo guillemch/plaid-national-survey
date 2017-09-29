@@ -7,7 +7,7 @@
         </a>
       </div>
 
-      <language-switcher />
+      <language-switcher :language="language" />
     </header>
     <section class="wrapper">
       <div class="box">
@@ -23,7 +23,7 @@
       </div>
     </section>
 
-    <language-prompt />
+    <language-prompt v-if="promptForLanguage" />
   </div>
 </template>
 
@@ -39,6 +39,35 @@ export default {
     LanguagePrompt,
     LanguageSwitcher,
     Tabs
+  },
+
+  data () {
+    return {
+      language: 'cy',
+      promptForLanguage: false
+    }
+  },
+
+  mounted () {
+    this.setCookieLanguage()
+    window.Bus.$on('setLanguage', (lang) => { this.setLanguage(lang) })
+  },
+
+  methods: {
+    setLanguage (lang) {
+      this.language = lang
+      this.$cookie.set('language', lang, '1Y')
+    },
+
+    setCookieLanguage () {
+      const language = this.$cookie.get('language')
+
+      if (language) {
+        this.language = language
+      } else {
+        this.promptForLanguage = true
+      }
+    }
   }
 }
 </script>

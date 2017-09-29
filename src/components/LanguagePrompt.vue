@@ -27,6 +27,7 @@
 <script>
 export default {
   name: 'language-prompt',
+
   data () {
     return {
       shown: false
@@ -40,6 +41,7 @@ export default {
   methods: {
     setLanguage (lang) {
       this.shown = false
+      window.Bus.$emit('setLanguage', lang)
     }
   }
 }

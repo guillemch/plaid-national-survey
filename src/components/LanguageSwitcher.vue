@@ -1,15 +1,25 @@
 <template>
   <div class="languages">
     <ul>
-      <li><a href="">Cymraeg</a></li>
-      <li class="active"><a href="">English</a></li>
+      <li :class="{'active': language == 'cy'}"><a href="#" @click.prevent="setLanguage('cy')">Cymraeg</a></li>
+      <li :class="{'active': language == 'en'}"><a href="#" @click.prevent="setLanguage('en')">English</a></li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'language-switcher'
+  name: 'language-switcher',
+
+  props: {
+    language: String
+  },
+
+  methods: {
+    setLanguage (lang) {
+      window.Bus.$emit('setLanguage', lang)
+    }
+  }
 }
 </script>
 
