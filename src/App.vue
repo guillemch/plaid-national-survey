@@ -17,7 +17,7 @@
           <img src="./assets/logo.png" alt="National Survey" />
         </div>
 
-        Tabs
+        <tabs />
 
         <router-view></router-view>
       </div>
@@ -30,13 +30,15 @@
 <script>
 import LanguagePrompt from '@/components/LanguagePrompt'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
+import Tabs from '@/components/Tabs'
 
 export default {
   name: 'app',
 
   components: {
     LanguagePrompt,
-    LanguageSwitcher
+    LanguageSwitcher,
+    Tabs
   }
 }
 </script>
