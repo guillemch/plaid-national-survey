@@ -7,4 +7,6 @@ $darkest-gray: #2c3e50;
 $dark-gray: lighten($darkest-gray, 10%);
 $gray: lighten($darkest-gray, 50%);
 $lightest-gray: #e1eaef;
+$light-gray: darken($lightest-gray, 10%);
+
 $shadow-color: rgba(8, 32, 58, 0.5);
