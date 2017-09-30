@@ -12,10 +12,9 @@
 
     <section class="wrapper" v-if="!promptForLanguage">
       <div class="box">
-        <div class="stripe"></div>
-
         <div class="main-logo">
-          <img src="./assets/logo.png" alt="National Survey" />
+          <img v-if="language == 'cy'" src="./assets/logo-cy.png" alt="Arolwg Cenedlaeth" />
+          <img v-if="language != 'cy'" src="./assets/logo-en.png" alt="National Survey" />
         </div>
 
         <tabs :language="language" />
@@ -104,6 +103,7 @@ export default {
 }
 
 .box {
+  position: relative;
   background: #fff;
   padding: $wrapper-padding;
   border-radius: 5px;
@@ -111,14 +111,17 @@ export default {
   box-shadow: 0 5px 60px -20px $shadow-color;
   margin: 1rem;
   animation: bounce-up .75s;
-}
 
-.stripe {
-  background: $primary-color;
-  background: linear-gradient(to right, $primary-color 0%, $secondary-color 100%);
-  height: 10px;
-  margin: -$wrapper-padding;
-  margin-bottom: $wrapper-padding;
+  &:before {
+    content: '';
+    background: $primary-color;
+    background: linear-gradient(to right, $primary-color 0%, $secondary-color 100%);
+    height: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 .brand {
@@ -141,8 +144,11 @@ export default {
 }
 
 .main-logo {
+  display: flex;
   max-width: 400px;
-  margin: 0 auto;
+  margin: .5rem auto 1.5rem auto;
+  height: 145px;
+  align-items: center;
 
   img {
     width: 100%;
