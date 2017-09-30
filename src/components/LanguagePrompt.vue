@@ -7,16 +7,30 @@
       <div class="modal-holder" v-if="shown">
         <div class="modal">
           <div class="box">
-            <div class="main-logo">
-              <img src="../assets/logo.png" alt="National Survey" />
+            <div class="columns">
+              <div class="option"  @click="setLanguage('cy')">
+                <div class="logo">
+                  <img src="../assets/logo-cy.png" alt="National Survey" />
+                </div>
+                <div class="text">
+                  Dewiswch eich iaith
+                </div>
+                <div class="action">
+                  <button class="button"><span>Cymraeg</span></button>
+                </div>
+              </div>
+              <div class="option" @click="setLanguage('en')">
+                <div class="logo">
+                  <img src="../assets/logo-en.png" alt="National Survey" />
+                </div>
+                <div class="text">
+                  Select your language
+                </div>
+                <div class="action">
+                  <button class="button"><span>English</span></button>
+                </div>
+              </div>
             </div>
-
-            <p>Select your language</p>
-
-            <ul class="options">
-              <li><button class="button" @click="setLanguage('cy')"><span>Cymraeg</span></button></li>
-              <li><button class="button" @click="setLanguage('en')"><span>English</span></button></lI>
-            </ul>
           </div>
         </div>
       </div>
@@ -60,26 +74,80 @@ export default {
 @import '../scss/variables';
 
 .box {
-  text-align: center;
-}
-
-.main-logo {
-  max-width: 300px;
-}
-
-.options {
-  display: flex;
-  justify-content: center;
   padding: 0;
-  margin: 2rem 0 0;
+}
 
-  li {
-    list-style: none;
-    margin: 0 1rem;
+.columns {
+  display: flex;
+}
+
+.option {
+  padding: 4rem 2rem;
+  width: 50%;
+  text-align: center;
+  border-right: 2px $light-gray solid;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+
+  &:last-child {
+    border-right: 0;
   }
 
-  button {
-    font-size: 1.5rem;
+  &:hover {
+    background: lighten($lightest-gray, 5%);
+
+    .button {
+      transform: translateY(-3px);
+      box-shadow: 0 2px 15px -5px $shadow-color;
+
+      span {
+        background: none;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.logo {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: 60px;
+  }
+}
+
+.text {
+  margin: 3rem 0;
+}
+
+.button {
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 480px) {
+  .modal-holder {
+    top: 1rem;
+  }
+
+  .columns {
+    flex-direction: column;
+  }
+
+  .option {
+    width: 100%;
+    border-bottom: 2px $light-gray solid;
+    padding: 2rem;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  .text {
+    margin: 1rem 0 1.5rem 0;
   }
 }
 </style>
