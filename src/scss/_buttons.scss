@@ -1,0 +1,39 @@
+.button {
+  background: linear-gradient(to right, $primary-color 0%, $secondary-color 100%);
+  border: 0;
+  font-size: 1rem;
+  font-family: $default-font;
+  padding: 0;
+  border-radius: 2rem;
+  font-weight: bold;
+  color: $dark-gray;
+  cursor: pointer;
+  transition: .1s ease-in-out;
+
+  span {
+    display: block;
+    margin: 3px;
+    padding: .5rem 2rem;
+    background: #fff;
+    border-radius: 2.2rem;
+    transition: .1s ease-in-out;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 2px 15px -5px $shadow-color;
+
+    span {
+      background: transparent;
+      color: #fff;
+    }
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+
+  &:focus, &:active {
+    outline: 0;
+  }
+}

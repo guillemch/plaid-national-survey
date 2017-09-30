@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../variables';
+@import '../scss/variables';
 
 .languages {
   margin-left: auto;

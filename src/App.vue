@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <header class="brand">
+    <header class="brand" v-if="!promptForLanguage">
       <div class="plaid">
         <a href="http://plaidifanc.org" target="_blank">
           <img src="./assets/logo-plaid-ifanc.png" alt="Plaid Ifanc" />
@@ -9,7 +9,8 @@
 
       <language-switcher :language="language" />
     </header>
-    <section class="wrapper">
+
+    <section class="wrapper" v-if="!promptForLanguage">
       <div class="box">
         <div class="stripe"></div>
 
@@ -23,7 +24,7 @@
       </div>
     </section>
 
-    <language-prompt v-if="promptForLanguage" />
+    <language-prompt :prompt="promptForLanguage" />
   </div>
 </template>
 
@@ -44,7 +45,7 @@ export default {
   data () {
     return {
       language: 'cy',
-      promptForLanguage: false
+      promptForLanguage: true
     }
   },
 
@@ -56,6 +57,7 @@ export default {
   methods: {
     setLanguage (lang) {
       this.language = lang
+      this.promptForLanguage = false
       this.$cookie.set('language', lang, '1Y')
     },
 
@@ -64,8 +66,7 @@ export default {
 
       if (language) {
         this.language = language
-      } else {
-        this.promptForLanguage = true
+        this.promptForLanguage = false
       }
     }
   }
@@ -73,30 +74,40 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'variables';
+@import 'scss/variables';
+@import 'scss/global';
+@import 'scss/modals';
+@import 'scss/buttons';
+@import 'scss/animations';
 
-* {
-  box-sizing: border-box;
+.wrapper {
+  max-width: $wrapper-width;
+  margin: $wrapper-padding * 2 auto;
 }
 
-body {
-  background: $lightest-gray;
-  font-family: $default-font;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: $darkest-gray;
-  font-size: 16px;
-  margin: 0;
+.box {
+  background: #fff;
+  padding: $wrapper-padding;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 5px 60px -20px $shadow-color;
+  margin: 1rem;
+  animation: bounce-up .75s;
 }
 
-a {
-  color: $primary-color;
+.stripe {
+  background: $primary-color;
+  background: linear-gradient(to right, $primary-color 0%, $secondary-color 100%);
+  height: 10px;
+  margin: -$wrapper-padding;
+  margin-bottom: $wrapper-padding;
 }
 
 .brand {
   max-width: $wrapper-width;
   margin: 0 auto;
   display: flex;
+  animation: slide-down 1.75s;
 }
 
 .plaid {
@@ -111,74 +122,12 @@ a {
   }
 }
 
-.wrapper {
-  max-width: $wrapper-width;
-  margin: $wrapper-padding * 2 auto;
-}
-
-.box {
-  background: #fff;
-  padding: $wrapper-padding;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 5px 60px -20px $shadow-color;
-  margin: 1rem;
-}
-
-.stripe {
-  background: $primary-color;
-  background: linear-gradient(to right, $primary-color 0%, $secondary-color 100%);
-  height: 10px;
-  margin: -$wrapper-padding;
-  margin-bottom: $wrapper-padding;
-}
-
 .main-logo {
   max-width: 400px;
   margin: 0 auto;
 
   img {
     width: 100%;
-  }
-}
-
-.button {
-  background: linear-gradient(to right, $primary-color 0%, $secondary-color 100%);
-  border: 0;
-  font-size: 1rem;
-  font-family: $default-font;
-  padding: 0;
-  border-radius: 2rem;
-  font-weight: bold;
-  color: $dark-gray;
-  cursor: pointer;
-  transition: .1s ease-in-out;
-
-  span {
-    display: block;
-    margin: 3px;
-    padding: .5rem 2rem;
-    background: #fff;
-    border-radius: 2.2rem;
-    transition: .1s ease-in-out;
-  }
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 2px 15px -5px $shadow-color;
-
-    span {
-      background: transparent;
-      color: #fff;
-    }
-  }
-
-  &:active {
-    transform: translateY(2px);
-  }
-
-  &:focus, &:active {
-    outline: 0;
   }
 }
 </style>
