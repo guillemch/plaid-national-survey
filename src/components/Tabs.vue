@@ -40,17 +40,19 @@ export default {
   @import '../scss/variables';
 
   .tabs {
-    text-align: center;
     margin-bottom: 1.5rem;
 
     ul {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
       padding: 0;
       margin: 0;
       border-bottom: 2px $light-gray solid;
     }
 
     li {
-      display: inline-block;
+      display: flex;
       list-style: none;
       margin-bottom: -2px;
     }
@@ -60,6 +62,7 @@ export default {
       color: $dark-gray;
       text-decoration: none;
       font-size: 1.25rem;
+      text-align: center;
       background: lighten($lightest-gray, 5%);
       border: 2px $light-gray solid;
       border-radius: 5px 5px 0 0;
@@ -82,6 +85,27 @@ export default {
 
         &:hover {
           background: #fff;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .tabs {
+      ul {
+        flex-direction: column;
+        border-bottom: 0;
+      }
+      li {
+        width: 100%;
+
+        a {
+          width: 100%;
+          border-radius: 0;
+
+          &.router-link-exact-active {
+            border-bottom: 2px $light-gray solid;
+          }
         }
       }
     }
