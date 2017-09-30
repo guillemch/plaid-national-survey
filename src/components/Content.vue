@@ -6,6 +6,7 @@
 
 <script>
 import store from '../store'
+import marked from 'marked'
 
 export default {
   name: 'content',
@@ -29,7 +30,7 @@ export default {
         return item.fields.slug === this.slug
       })
 
-      return tab.fields.content
+      return marked(tab.fields.content, { sanitize: true })
     }
   }
 }
