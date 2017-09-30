@@ -1,9 +1,8 @@
 <template>
   <div class="tabs">
       <ul>
-        <li><router-link to="/">Home</router-link></li>
         <li v-for="tab in shared.state.entries.items">
-          <router-link :to="tab.fields.slug">{{ tab.fields.title }}</router-link>
+          <router-link :to="'/' + language + '/' + tab.fields.slug">{{ tab.fields.title }}</router-link>
         </li>
       </ul>
   </div>
@@ -15,14 +14,24 @@ import store from '../store'
 export default {
   name: 'tabs',
 
+  props: {
+    language: String
+  },
+
   data () {
     return {
       shared: store
     }
   },
 
+  watch: {
+    language: function (language) {
+      store.getTabs(this.language)
+    }
+  },
+
   created () {
-    store.getTabs()
+    store.getTabs(this.language)
   }
 }
 </script>

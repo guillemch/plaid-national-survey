@@ -18,9 +18,15 @@
           <img src="./assets/logo.png" alt="National Survey" />
         </div>
 
-        <tabs />
+        <tabs :language="language" />
 
         <router-view></router-view>
+
+        <div class="cta">
+          <button class="button" @click="displaySurvey(true)"><span>Launch survey</span></button>
+        </div>
+
+        <survey />
       </div>
     </section>
 
@@ -32,6 +38,7 @@
 import LanguagePrompt from '@/components/LanguagePrompt'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 import Tabs from '@/components/Tabs'
+import Survey from '@/components/Survey'
 
 export default {
   name: 'app',
@@ -39,26 +46,49 @@ export default {
   components: {
     LanguagePrompt,
     LanguageSwitcher,
-    Tabs
+    Tabs,
+    Survey
   },
 
   data () {
     return {
-      language: 'cy',
+      language: null,
       promptForLanguage: true
     }
   },
 
-  mounted () {
-    this.setCookieLanguage()
+  watch: {
+    language: function (language) {
+      const slug = (this.$route.params.slug) ? this.$route.params.slug : 'home'
+      this.$router.push('/' + language + '/' + slug)
+    }
+  },
+
+  created () {
+    this.setInitialLanguage()
     window.Bus.$on('setLanguage', (lang) => { this.setLanguage(lang) })
   },
 
   methods: {
+    displaySurvey (display) {
+      window.Bus.$emit('displaySurvey', display)
+    },
+
     setLanguage (lang) {
       this.language = lang
       this.promptForLanguage = false
       this.$cookie.set('language', lang, '1Y')
+    },
+
+    setInitialLanguage () {
+      const routeLocale = this.$route.params.locale
+
+      if (routeLocale) {
+        this.language = routeLocale
+        this.promptForLanguage = false
+      } else {
+        this.setCookieLanguage()
+      }
     },
 
     setCookieLanguage () {
@@ -128,6 +158,14 @@ export default {
 
   img {
     width: 100%;
+  }
+}
+
+.cta {
+  text-align: center;
+
+  .button {
+    font-size: 1.5rem;
   }
 }
 </style>

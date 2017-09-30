@@ -13,9 +13,10 @@ export default new Router({
       component: Home
     },
     {
-      path: '*',
+      path: '/:locale/:slug',
       name: 'Content',
-      component: Content
+      component: Content,
+      props: true
     }
   ]
 })
