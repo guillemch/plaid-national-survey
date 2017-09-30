@@ -2,19 +2,27 @@
   <div class="tabs">
       <ul>
         <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="tab2">Tab 2</router-link></li>
-        <li><router-link to="tab3">Tab 3</router-link></li>
+        <li v-for="tab in shared.state.entries.items">
+          <router-link :to="tab.fields.slug">{{ tab.fields.title }}</router-link>
+        </li>
       </ul>
   </div>
 </template>
 
 <script>
+import store from '../store'
+
 export default {
   name: 'tabs',
+
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      shared: store
     }
+  },
+
+  created () {
+    store.getTabs()
   }
 }
 </script>
