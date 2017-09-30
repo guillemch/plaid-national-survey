@@ -131,15 +131,25 @@ export default {
   animation: slide-down 1.75s;
 }
 
-.plaid {
+.plaid a {
+  display: block;
   background: #fff;
-  padding: .5rem 1.75rem .25rem 0;
+  padding: 2.5rem 1.75rem .25rem 0;
+  margin-top: -2rem;
   margin-left: 1rem;
   border-radius: 0 0 5px 5px;
   width: 100px;
+  transition: 0.2s ease-in-out;
+  box-shadow: 0px 1px 5px -3px $shadow-color;
 
   img {
     width: 100%;
+  }
+
+  &:hover {
+    position: relative;
+    transform: translateY(20px);
+    box-shadow: 0px 1px 15px -5px $shadow-color;
   }
 }
 
