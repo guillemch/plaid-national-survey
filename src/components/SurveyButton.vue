@@ -1,7 +1,7 @@
 <template>
   <div class="survey-button">
     <div class="cta">
-      <button class="button" @click="displaySurvey(true)"><span>Launch survey</span></button>
+      <button class="button" @click="displaySurvey(true)"><span>{{ label }}</span></button>
     </div>
 
     <survey />
@@ -18,6 +18,17 @@ export default {
     Survey
   },
 
+  computed: {
+    label () {
+      const labels = {
+        'cy': 'Take the survey Welsh',
+        'en': 'Take the survey'
+      }
+
+      return labels[this.$route.params.locale]
+    }
+  },
+
   methods: {
     displaySurvey (display) {
       window.Bus.$emit('displaySurvey', display)
@@ -28,6 +39,7 @@ export default {
 
 <style lang="scss" scoped>
 .cta {
+  margin-top: 2rem;
   text-align: center;
 
   .button {
