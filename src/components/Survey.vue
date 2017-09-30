@@ -7,7 +7,6 @@
       <div class="modal-holder" v-if="shown" @click="shown = false">
         <div class="modal">
           <div class="box">
-            <div class="stripe"></div>
             <iframe class="survey-iframe" src="/static/survey.html" width="100%" height="500" frameborder="0" scrolling="no"></iframe>
           </div>
         </div>

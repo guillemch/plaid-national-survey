@@ -7,8 +7,6 @@
       <div class="modal-holder" v-if="shown">
         <div class="modal">
           <div class="box">
-            <div class="stripe"></div>
-
             <div class="main-logo">
               <img src="../assets/logo.png" alt="National Survey" />
             </div>
