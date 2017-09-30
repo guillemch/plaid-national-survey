@@ -1,6 +1,6 @@
 <template>
-  <div class="content" v-if="shared.state.entry.fields">
-    <div v-html="shared.state.entry.fields.content"></div>
+  <div class="content">
+    <div v-html="content"></div>
   </div>
 </template>
 
@@ -11,8 +11,7 @@ export default {
   name: 'content',
 
   props: {
-    slug: String,
-    locale: String
+    slug: String
   },
 
   data () {
@@ -21,18 +20,17 @@ export default {
     }
   },
 
-  watch: {
-    slug: function (slug) {
-      store.getTab(this.locale, slug)
-    },
+  computed: {
+    content () {
+      if (!this.shared.state.hasOwnProperty('entries')) return
+      if (!this.shared.state.entries.hasOwnProperty('items')) return
 
-    locale: function (locale) {
-      store.getTab(locale, this.slug)
+      const tab = this.shared.state.entries.items.find((item) => {
+        return item.fields.slug === this.slug
+      })
+
+      return tab.fields.content
     }
-  },
-
-  created () {
-    store.getTab(this.locale, this.slug)
   }
 }
 </script>
