@@ -44,6 +44,7 @@ export default {
       color: $darkest-gray;
       text-decoration: none;
       padding: 1rem .75rem;
+      font-weight: normal;
 
       &:hover {
         background: #fff;

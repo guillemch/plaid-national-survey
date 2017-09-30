@@ -13,7 +13,12 @@ body {
 }
 
 a {
-  color: $primary-color;
+  color: $secondary-color;
+  font-weight: bold;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 p {
