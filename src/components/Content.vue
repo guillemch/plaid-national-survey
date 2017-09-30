@@ -1,18 +1,25 @@
 <template>
-  <div class="content">
-    <div v-html="content"></div>
+  <div class="content" v-if="tab">
+    <div v-html="tab.content"></div>
+
+    <survey-button v-if="tab.displaySurveyButton" />
   </div>
 </template>
 
 <script>
 import store from '../store'
 import marked from 'marked'
+import SurveyButton from '@/components/SurveyButton'
 
 export default {
   name: 'content',
 
   props: {
     slug: String
+  },
+
+  components: {
+    SurveyButton
   },
 
   data () {
@@ -22,7 +29,7 @@ export default {
   },
 
   computed: {
-    content () {
+    tab () {
       if (!this.shared.state.hasOwnProperty('entries')) return
       if (!this.shared.state.entries.hasOwnProperty('items')) return
 
@@ -30,7 +37,10 @@ export default {
         return item.fields.slug === this.slug
       })
 
-      return marked(tab.fields.content, { sanitize: true })
+      return {
+        'content': marked(tab.fields.content, { sanitize: true }),
+        'displaySurveyButton': tab.fields.displaySurveyButton
+      }
     }
   }
 }

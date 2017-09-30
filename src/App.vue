@@ -21,12 +21,6 @@
         <tabs :language="language" />
 
         <router-view></router-view>
-
-        <div class="cta">
-          <button class="button" @click="displaySurvey(true)"><span>Launch survey</span></button>
-        </div>
-
-        <survey />
       </div>
     </section>
 
@@ -38,7 +32,6 @@
 import LanguagePrompt from '@/components/LanguagePrompt'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 import Tabs from '@/components/Tabs'
-import Survey from '@/components/Survey'
 
 export default {
   name: 'app',
@@ -46,8 +39,7 @@ export default {
   components: {
     LanguagePrompt,
     LanguageSwitcher,
-    Tabs,
-    Survey
+    Tabs
   },
 
   data () {
@@ -70,10 +62,6 @@ export default {
   },
 
   methods: {
-    displaySurvey (display) {
-      window.Bus.$emit('displaySurvey', display)
-    },
-
     setLanguage (lang) {
       this.language = lang
       this.promptForLanguage = false
@@ -158,14 +146,6 @@ export default {
 
   img {
     width: 100%;
-  }
-}
-
-.cta {
-  text-align: center;
-
-  .button {
-    font-size: 1.5rem;
   }
 }
 </style>
