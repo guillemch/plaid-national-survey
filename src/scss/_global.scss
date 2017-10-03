@@ -24,3 +24,36 @@ a {
 p {
   line-height: 1.75;
 }
+
+.backgrounds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+}
+
+.wales {
+  position: absolute;
+  top: -10px;
+  left: -270px;
+  background-image: url(./assets/wales.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 400px;
+  height: 500px;
+  opacity: 0.1;
+}
+
+.dragon {
+  position: absolute;
+  top: -20px;
+  right: -320px;
+  background-image: url(./assets/dragon-flipped.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 800px;
+  height: 500px;
+  opacity: 0.1;
+}

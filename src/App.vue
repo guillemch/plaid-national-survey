@@ -24,6 +24,13 @@
     </section>
 
     <language-prompt :prompt="promptForLanguage" />
+
+    <div class="backgrounds">
+      <div class="wrapper">
+        <div class="wales"></div>
+        <div class="dragon"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -98,6 +105,7 @@ export default {
 @import 'scss/animations';
 
 .wrapper {
+  position: relative;
   max-width: $wrapper-width;
   margin: $wrapper-padding * 2 auto;
 }
