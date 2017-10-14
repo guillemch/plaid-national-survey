@@ -47,9 +47,9 @@ p {
 }
 
 .dragon {
-  position: absolute;
-  top: -20px;
-  right: -320px;
+  position: fixed;
+  top: 20px;
+  right: 0;
   background-image: url(./assets/dragon-flipped.png);
   background-repeat: no-repeat;
   background-size: 100%;
