@@ -40,7 +40,15 @@ export default {
   padding: 0;
 }
 
-.stripe {
-  margin: 0;
+@media (min-height: 800px) {
+  .survey-iframe {
+    height: 650px;
+  }
+}
+
+@media (min-height: 1100px) {
+  .survey-iframe {
+    height: 900px;
+  }
 }
 </style>
