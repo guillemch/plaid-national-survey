@@ -4,7 +4,7 @@
       <button class="button" @click="displaySurvey(true)"><span>{{ label }}</span></button>
     </div>
 
-    <survey />
+    <survey :language="$route.params.locale" />
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
   computed: {
     label () {
       const labels = {
-        'cy': 'Take the survey Welsh',
+        'cy': 'Cymerwch yr arolwg',
         'en': 'Take the survey'
       }
 
