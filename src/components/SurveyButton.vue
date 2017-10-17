@@ -21,7 +21,7 @@ export default {
   computed: {
     label () {
       const labels = {
-        'cy': 'Cymerwch yr arolwg',
+        'cy': 'Cymera\'r arolwg',
         'en': 'Take the survey'
       }
 
