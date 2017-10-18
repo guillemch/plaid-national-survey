@@ -25,12 +25,7 @@
 
     <language-prompt :prompt="promptForLanguage" />
 
-    <div class="backgrounds">
-      <div class="wrapper">
-        <div class="wales"></div>
-        <div class="dragon"></div>
-      </div>
-    </div>
+    <div class="background"></div>
   </div>
 </template>
 

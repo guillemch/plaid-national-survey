@@ -36,26 +36,15 @@ p {
   width: 100%;
 }
 
-.wales {
-  position: absolute;
-  top: -10px;
-  left: -270px;
-  background-image: url(./assets/wales.png);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  width: 400px;
-  height: 500px;
-  opacity: 0.1;
-}
-
-.dragon {
+.background {
   position: fixed;
-  top: 20px;
-  right: 0;
-  background-image: url(./assets/dragon-flipped.png);
+  top: -36px;
+  left: 50%;
+  background-image: url(./assets/background.png);
   background-repeat: no-repeat;
   background-size: 100%;
-  width: 800px;
+  width: 1400px;
   height: 500px;
   opacity: 0.1;
+  margin-left: -700px;
 }
