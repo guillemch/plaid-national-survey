@@ -70,14 +70,7 @@ export default {
     },
 
     setInitialLanguage () {
-      const routeLocale = this.$route.params.locale
-
-      if (routeLocale) {
-        this.language = routeLocale
-        this.promptForLanguage = false
-      } else {
-        this.setCookieLanguage()
-      }
+      this.setCookieLanguage()
     },
 
     setCookieLanguage () {
